@@ -1,4 +1,3 @@
-
 function operate(a,b,operator) {
     if(operator === "add") {
         return add(a,b);
