@@ -1,0 +1,53 @@
+.interface {
+    display: flex;
+    justify-content: center;
+}
+.calculator {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(173, 177, 180);
+    padding: 10px; 
+}
+
+.display {
+    background-color: gray;
+    width: 500px;
+    margin: 5px; 
+    height: 100px;
+}
+
+.buttons .top {
+    display: grid; 
+    grid-template-columns: repeat(2,1fr);
+}
+.buttons .rows {
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr);
+}
+
+button {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px; 
+}
+
+button.AC,
+button.C {
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+button.AC {
+    background-color: lightcoral;
+}
+
+button.C {
+    background-color:lightcyan; 
+}
+
+.rows button {
+    background-color: lightgoldenrodyellow;
+    font-size: 20px;
+    padding: 20px 20px;
+}
