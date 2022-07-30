@@ -1,3 +1,11 @@
+const buttons = document.querySelectorAll("button"); 
+buttons.forEach((button) => {
+    button.addEventListener("click",() => {
+        alert("hello world");
+    });
+}); 
+
+
 function operate(a,b,operator) {
     if(operator === "add") {
         return add(a,b);
