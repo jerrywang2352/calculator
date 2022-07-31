@@ -12,10 +12,28 @@
 
 /*Calculator output*/
 .display {
-    background-color: gray;
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f6f6;
+    width: 300px;
     margin: 5px; 
     height: 100px;
+}
+
+.input {
+    text-align: end;
+    font-size: 32px;
+    height: 50px; 
+    margin-top: 10px; 
+    margin-right: 10px; 
+}
+
+.results {
+    text-align: end; 
+    font-size: 48px; 
+    height:50px; 
+    margin-bottom: 10px; 
+    margin-right: 10px; 
 }
 
 /*Clear and Delete Buttons*/
