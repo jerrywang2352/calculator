@@ -1,3 +1,6 @@
+/*
+VARIABLE INITIALIZATIONS  
+*/
 const numbers = document.querySelectorAll("#number");
 const operators = document.querySelectorAll("#operator");  
 const AC = document.querySelector(".AC"); 
@@ -10,33 +13,30 @@ const dot = document.querySelector(".dot");
 let expression = [];
 let currNum = ""; 
 
-//show user number input  
-numbers.forEach((button) => {
-    button.addEventListener("click",numEvent);
-}); 
-
-//show user basic math operator input 
-operators.forEach((button) => {
-    button.addEventListener("click",operatorEvent);
-}); 
-
-//decimal point input 
-dot.addEventListener("click",decimalEvent)
-
-
-//Reset current number input  
-C.addEventListener("click",clearEvent);
+/*
+EVENT LISTENERS  
+*/
+//activates decimal, numbers, delete buttons
+activateButtons(); 
 
 //Reset Calculator 
-AC.addEventListener("click",() => {
+AC.addEventListener("click",reset)
+
+//Displays solved expression 
+equal.addEventListener("click",equalEvent);
+
+/*
+FUNCTIONS 
+*/
+function reset() {
     currNum = "";
     expression = []; 
     input.innerText = "0"; 
     results.innerText = ""; 
-})
+    activateButtons(); 
+}
 
-//Displays solved expression 
-equal.addEventListener("click",()=> {
+function equalEvent() {
     if (currNum.length != 0) {
         expression.push(currNum); 
         currNum = ""; 
@@ -51,11 +51,42 @@ equal.addEventListener("click",()=> {
     }
     input.innerText = ""; 
     results.innerText = parse(expression.join(" "));
-});
+    deactivateButtons(); 
+}
 
-//solve expression 
-function parse(str) {
-    return Function(`'use strict'; return (${str})`)();
+//activates decimal, numbers, delete buttons
+function activateButtons() {
+    //show user number input  
+    numbers.forEach((button) => {
+        button.addEventListener("click",numEvent);
+    }); 
+
+    //show user basic math operator input 
+    operators.forEach((button) => {
+        button.addEventListener("click",operatorEvent);
+    }); 
+
+    //decimal point input 
+    dot.addEventListener("click",decimalEvent);
+
+
+    //Reset current number input  
+    C.addEventListener("click",clearEvent);
+}
+
+//deactivates decimal, numbers, delete buttons
+function deactivateButtons() {
+    numbers.forEach((button) => {
+        button.removeEventListener("click",numEvent);
+    }); 
+
+    operators.forEach((button) => {
+        button.removeEventListener("click",operatorEvent);
+    }); 
+
+    dot.removeEventListener("click",decimalEvent);
+
+    C.removeEventListener("click",clearEvent);
 }
 
 function numEvent(e) {
@@ -93,4 +124,9 @@ function clearEvent() {
         expression.pop(); 
     } 
     input.innerText = expression.join(" "); 
+}
+
+//solve expression 
+function parse(str) {
+    return Function(`'use strict'; return (${str})`)();
 }
