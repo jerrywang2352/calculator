@@ -1,3 +1,4 @@
+
 const numbers = document.querySelectorAll("#number");
 const operators = document.querySelectorAll("#operator");  
 const AC = document.querySelector(".AC"); 
@@ -24,6 +25,8 @@ operators.forEach((button) => {
         if (currNum.length != 0) {
             expression.push(currNum); 
             currNum = ""; 
+        } else {
+            expression.push("0"); 
         }
         if ("+−×÷".split("").includes(expression[expression.length-1])) { //last input was an operator 
             expression[expression.length-1] = e.target.innerText; //change operator 
@@ -62,27 +65,25 @@ AC.addEventListener("click",() => {
     results.innerText = ""; 
 })
 
-// //Displays solved expression 
-// equal.addEventListener("click",()=> {
-//     results.innerText = solve(expression); 
-// })
+//Displays solved expression 
+equal.addEventListener("click",()=> {
+    if (currNum.length != 0) {
+        expression.push(currNum); 
+        currNum = ""; 
+    }
+    for (let i = 0; i < expression.length-1; i ++) {
+        if (expression[i] === "−") {expression[i] = "-";}
+        else if (expression[i] === "×") {expression[i] = "*";}
+        else if (expression[i] === "÷") {expression[i] = "/";}
+    }
+    if ("+−×÷".split("").includes(expression[expression.length-1])) { //last input was an operator
+        expression.pop(); //delete trailing operator
+    }
+    input.innerText = ""; 
+    results.innerText = parse(expression.join(" "));
+});
 
-
-// function solve(arr) {
-// }
-
-function add(a,b) {
-    return a+b;
-}
-
-function subtract(a,b) {
-    return a-b;
-} 
-
-function multiply(a,b) {
-    return a*b;
-} 
-
-function divide(a,b) {
-    return a/b; 
+//solve expression 
+function parse(str) {
+    return Function(`'use strict'; return (${str})`)();
 }
