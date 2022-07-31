@@ -17,23 +17,25 @@
     background-color: #f6f6f6;
     width: 300px;
     margin: 5px; 
-    height: 100px;
+    height: auto;
 }
 
 .input {
     text-align: end;
     font-size: 32px;
-    height: 50px; 
+    height: 32px; 
     margin-top: 10px; 
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 .results {
     text-align: end; 
     font-size: 48px; 
-    height:50px; 
-    margin-bottom: 10px; 
-    margin-right: 10px; 
+    height:48px; 
+    margin-bottom:10px; 
+    margin-right: 10px;
+    margin-left: 10px; 
 }
 
 /*Clear and Delete Buttons*/
