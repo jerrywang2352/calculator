@@ -1,23 +1,29 @@
+body{
+    background-color: #FCB31B;
+}
 .interface {
     display: flex;
     justify-content: center;
     margin-top: 200px;
+    
 }
 .calculator {
     display: flex;
     flex-direction: column;
-    background-color: rgb(173, 177, 180);
-    padding: 10px; 
+    padding: 15px; 
+    background-color: #212121;
+    border-radius: 15px;
 }
 
 /*Calculator output*/
 .display {
     display: flex;
     flex-direction: column;
-    background-color: #f6f6f6;
     width: 300px;
     margin: 5px; 
     height: auto;
+    background-color: #494747;
+    border-radius: 15px;
 }
 
 .input {
@@ -27,6 +33,8 @@
     margin-top: 10px; 
     margin-right: 10px;
     margin-left: 10px;
+    color: #60A07F;
+    font-family: 'Quicksand', 'Roboto', sans-serif;
 }
 
 .results {
@@ -35,7 +43,9 @@
     height:64px; 
     margin-bottom:10px; 
     margin-right: 10px;
-    margin-left: 10px; 
+    margin-left: 10px;
+    color: #FFFFFF;
+    font-family: 'Quicksand', 'Roboto', sans-serif; 
 }
 
 /*Clear and Delete Buttons*/
@@ -48,16 +58,8 @@ button.AC,
 button.C {
     font-size: 20px;
     padding: 20px 20px;
+    border-radius: 1.5rem;
 }
-
-button.AC {
-    background-color: lightcoral;
-}
-
-button.C {
-    background-color:lightcyan; 
-}
-
 
 /*Number and Operator Buttons*/
 .buttons .rows {
@@ -68,20 +70,40 @@ button.C {
 
 
 button {
+    background-color: #616161;
+    color: #DFDFDF;
     border: 2px solid black;
-    border-radius: 5px;
     margin: 5px; 
 }
 
 
 .rows button {
-    background-color: lightgoldenrodyellow;
     font-size: 20px;
+    border-radius: 100%;
     padding: 20px 20px;
 }
 
 /*Button effects*/
 button:hover {
     cursor: pointer;
-    filter: brightness(90%); 
+    background-color: #bdbdbd;
+    color: #212121;
+}
+
+button.AC:hover {
+    background-color: lightcoral;
+    color: black; 
+}
+
+button.C:hover {
+    background-color: lightcyan;
+    color: black; 
+}
+
+button#operator:hover {
+    background-color:mediumturquoise;
+}
+
+button.equal:hover {
+    background-color: lightgreen;
 }
