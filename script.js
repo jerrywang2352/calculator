@@ -5,6 +5,7 @@ const C = document.querySelector(".C");
 const equal = document.querySelector(".equal"); 
 const input = document.querySelector(".input"); 
 const results = document.querySelector(".results"); 
+const dot = document.querySelector(".dot"); 
 
 let expression = [];
 let currNum = ""; 
@@ -14,7 +15,6 @@ numbers.forEach((button) => {
     button.addEventListener("click",(e) => {
         currNum += e.target.innerText;
         input.innerText = expression.join(" ") + " "+ currNum; 
-        console.log(expression.join(" "));  
     });
 }); 
 
@@ -25,19 +25,33 @@ operators.forEach((button) => {
             expression.push(currNum); 
             currNum = ""; 
         }
-        if ("+−×÷".split("").includes(expression[expression.length-1])) {
-            expression[expression.length-1] = e.target.innerText;
-        } else {
-            expression.push(e.target.innerText); 
+        if ("+−×÷".split("").includes(expression[expression.length-1])) { //last input was an operator 
+            expression[expression.length-1] = e.target.innerText; //change operator 
+        } else if (expression.length != 0) {
+            expression.push(e.target.innerText); //add operator to expression
         }
         input.innerText = expression.join(" ");
-        console.log(expression.join(" ")); 
     });
 }); 
 
-//Reset currNum 
+//decimal point input 
+dot.addEventListener("click",() => {
+    if (currNum.length === 0) {
+        currNum += "0."; 
+    } else if (currNum.charAt(currNum.length-1) != "." && !currNum.includes(".")) {
+        currNum += "."; 
+    }
+    input.innerText = expression.join(" ") + " "+ currNum;
+})
+
+
+//Reset current number input  
 C.addEventListener("click",() => {
     currNum = ""; 
+    if (!"+−×÷".split("").includes(expression[expression.length-1])){ //last input was a number
+        expression.pop(); 
+    } 
+    input.innerText = expression.join(" "); 
 });
 
 //Reset Calculator 
@@ -48,18 +62,14 @@ AC.addEventListener("click",() => {
     results.innerText = ""; 
 })
 
+// //Displays solved expression 
+// equal.addEventListener("click",()=> {
+//     results.innerText = solve(expression); 
+// })
 
-function operate(a,b,operator) {
-    if(operator === "add") {
-        return add(a,b);
-    } else if(operator === "subtract") {
-        return subtract(a,b);
-    } else if(operator === "multiply") {
-        return multiply(a,b);
-    } else if(operator === "divide") {
-        return divide(a,b); 
-    }
-}
+
+// function solve(arr) {
+// }
 
 function add(a,b) {
     return a+b;
