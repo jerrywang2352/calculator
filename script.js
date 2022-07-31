@@ -1,4 +1,3 @@
-
 const numbers = document.querySelectorAll("#number");
 const operators = document.querySelectorAll("#operator");  
 const AC = document.querySelector(".AC"); 
@@ -13,49 +12,20 @@ let currNum = "";
 
 //show user number input  
 numbers.forEach((button) => {
-    button.addEventListener("click",(e) => {
-        currNum += e.target.innerText;
-        input.innerText = expression.join(" ") + " "+ currNum; 
-    });
+    button.addEventListener("click",numEvent);
 }); 
 
 //show user basic math operator input 
 operators.forEach((button) => {
-    button.addEventListener("click",(e) => {
-        if (currNum.length != 0) {
-            expression.push(currNum); 
-            currNum = ""; 
-        } else {
-            expression.push("0"); 
-        }
-        if ("+−×÷".split("").includes(expression[expression.length-1])) { //last input was an operator 
-            expression[expression.length-1] = e.target.innerText; //change operator 
-        } else if (expression.length != 0) {
-            expression.push(e.target.innerText); //add operator to expression
-        }
-        input.innerText = expression.join(" ");
-    });
+    button.addEventListener("click",operatorEvent);
 }); 
 
 //decimal point input 
-dot.addEventListener("click",() => {
-    if (currNum.length === 0) {
-        currNum += "0."; 
-    } else if (currNum.charAt(currNum.length-1) != "." && !currNum.includes(".")) {
-        currNum += "."; 
-    }
-    input.innerText = expression.join(" ") + " "+ currNum;
-})
+dot.addEventListener("click",decimalEvent)
 
 
 //Reset current number input  
-C.addEventListener("click",() => {
-    currNum = ""; 
-    if (!"+−×÷".split("").includes(expression[expression.length-1])){ //last input was a number
-        expression.pop(); 
-    } 
-    input.innerText = expression.join(" "); 
-});
+C.addEventListener("click",clearEvent);
 
 //Reset Calculator 
 AC.addEventListener("click",() => {
@@ -86,4 +56,41 @@ equal.addEventListener("click",()=> {
 //solve expression 
 function parse(str) {
     return Function(`'use strict'; return (${str})`)();
+}
+
+function numEvent(e) {
+    currNum += e.target.innerText;
+    input.innerText = expression.join(" ") + " "+ currNum; 
+}
+
+function operatorEvent(e) {
+    if (currNum.length != 0) {
+        expression.push(currNum); 
+        currNum = ""; 
+    } else {
+        expression.push("0"); 
+    }
+    if ("+−×÷".split("").includes(expression[expression.length-1])) { //last input was an operator 
+        expression[expression.length-1] = e.target.innerText; //change operator 
+    } else if (expression.length != 0) {
+        expression.push(e.target.innerText); //add operator to expression
+    }
+    input.innerText = expression.join(" ");
+}
+
+function decimalEvent() {
+    if (currNum.length === 0) {
+        currNum += "0."; 
+    } else if (currNum.charAt(currNum.length-1) != "." && !currNum.includes(".")) {
+        currNum += "."; 
+    }
+    input.innerText = expression.join(" ") + " "+ currNum;
+}
+
+function clearEvent() {
+    currNum = ""; 
+    if (!"+−×÷".split("").includes(expression[expression.length-1])){ //last input was a number
+        expression.pop(); 
+    } 
+    input.innerText = expression.join(" "); 
 }
